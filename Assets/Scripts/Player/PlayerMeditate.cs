@@ -16,6 +16,8 @@ public class PlayerMeditate : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        interactionModal.SetActive(false);
+
     }
 
     // Update is called once per frame
