@@ -28,10 +28,7 @@ public class PlayerMeditate : MonoBehaviour
                 animator.SetBool("IsMeditating", !animator.GetBool("IsMeditating"));   
                 animator.SetBool("IsWalking", !animator.GetBool("IsMeditating"));   
 
-                if (animator.GetBool("IsMeditating"))
-                {
-                    dialogBox.GetComponent<Animator>().SetBool("IsOpen", false);
-                }
+                dialogBox.GetComponent<Animator>().SetBool("IsOpen", !animator.GetBool("IsMeditating"));
             }
             
         }

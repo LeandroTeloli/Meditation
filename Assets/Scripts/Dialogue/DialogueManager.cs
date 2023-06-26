@@ -18,9 +18,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        Debug.Log(animator.GetBool("IsOpen")+ " Antes");
         animator.SetBool("IsOpen",true);
-        Debug.Log(animator.GetBool("IsOpen")+ " Depois");
 
         titleText.text = dialogue.title;
 
