@@ -642,8 +642,9 @@ GameObject:
   - component: {fileID: 500323369}
   - component: {fileID: 500323371}
   - component: {fileID: 500323370}
+  - component: {fileID: 500323372}
   m_Layer: 5
-  m_Name: InteractionModal
+  m_Name: DialogBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -668,7 +669,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -113.1, y: -34.2}
-  m_SizeDelta: {x: 70, y: 15.2}
+  m_SizeDelta: {x: 71, y: 15.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &500323370
 MonoBehaviour:
@@ -708,6 +709,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500323368}
   m_CullTransparentMesh: 1
+--- !u!95 &500323372
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500323368}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9cbba5b01f95201418c8769f11aa4ac9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,6 +1402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleText: {fileID: 2093421844}
+  animator: {fileID: 500323372}
 --- !u!4 &1418667017
 Transform:
   m_ObjectHideFlags: 0
@@ -1666,7 +1688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eae7fd3f85c4eb4898863dab2696982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionModal: {fileID: 500323368}
+  dialogBox: {fileID: 500323368}
   playerController: {fileID: 1518304583}
 --- !u!114 &1518304586
 MonoBehaviour:

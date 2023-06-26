@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMeditate : MonoBehaviour
 {
     [SerializeField]
-    private GameObject interactionModal;
+    private GameObject dialogBox;
     private Animator animator;
     private bool isReadyToMeditate = false;
 
@@ -16,8 +16,6 @@ public class PlayerMeditate : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        interactionModal.SetActive(false);
-
     }
 
     // Update is called once per frame
@@ -29,10 +27,10 @@ public class PlayerMeditate : MonoBehaviour
             {
                 animator.SetBool("IsMeditating", !animator.GetBool("IsMeditating"));   
                 animator.SetBool("IsWalking", !animator.GetBool("IsMeditating"));   
-                
+
                 if (animator.GetBool("IsMeditating"))
                 {
-                    interactionModal.SetActive(false);
+                    dialogBox.GetComponent<Animator>().SetBool("IsOpen", false);
                 }
             }
             
@@ -43,13 +41,12 @@ public class PlayerMeditate : MonoBehaviour
     {
       isReadyToMeditate = true;
       GetComponent<DialogueTrigger>().TriggerDialogue();
-      interactionModal.SetActive(true);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
       isReadyToMeditate = false;
-      interactionModal.SetActive(false);
+      dialogBox.GetComponent<Animator>().SetBool("IsOpen", false);
     }
     
 }

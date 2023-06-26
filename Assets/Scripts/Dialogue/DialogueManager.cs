@@ -7,6 +7,7 @@ public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI titleText;
     // public TextMeshProUGUI dialogueText;
+    public Animator animator;
     private Queue<string> sentences;
 
     // Start is called before the first frame update
@@ -17,7 +18,9 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        Debug.Log(dialogue.title);
+        Debug.Log(animator.GetBool("IsOpen")+ " Antes");
+        animator.SetBool("IsOpen",true);
+        Debug.Log(animator.GetBool("IsOpen")+ " Depois");
 
         titleText.text = dialogue.title;
 
@@ -45,6 +48,6 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        Debug.Log("End of conversation");
+        // animator.SetBool("IsOpen",false);
     }
 }
