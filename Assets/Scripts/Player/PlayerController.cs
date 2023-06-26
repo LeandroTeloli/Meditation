@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 1.5f;
-    public float jumpingPower = 3f;
+    public float speed;
+    public float jumpingPower;
+    public float horizontal;
     private bool isFacingRight = true;
     private Transform floorCheck;
     private LayerMask floorLayer;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private Animator animator;
 
     private void Start()
@@ -22,13 +23,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        bool isOnFloor = IsOnFloor();
-
+        horizontal = Input.GetAxisRaw("Horizontal");
 
         //Jump
 
-        if (Input.GetButtonDown("Jump") && isOnFloor)
+        if (Input.GetButtonDown("Jump") && isOnFloor() && (!animator.GetBool("IsMeditating")))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
@@ -40,31 +39,27 @@ public class PlayerController : MonoBehaviour
 
 
         //Walk
-
-        if (horizontal != 0f)
+        if (horizontal != 0f && (!animator.GetBool("IsMeditating")))
         {
             // Player is walking
-            animator.SetBool("IsWalking", true);  
+            animator.SetBool("IsWalking", !animator.GetBool("IsMeditating"));  
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
         else
         {
             // Player is idle
             animator.SetBool("IsWalking", false);
-
-            if (isOnFloor) {
-                rb.velocity = new (0f, rb.velocity.y);
-            }
+            rb.velocity = new (0f, rb.velocity.y);        
         }
 
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        if ((isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f) && (!animator.GetBool("IsMeditating")))
         {
             Flip();
         }
 
     }
 
-    private bool IsOnFloor()
+    public bool isOnFloor()
     {
         return Physics2D.OverlapCircle(floorCheck.position, 0.2f, floorLayer);
     }
