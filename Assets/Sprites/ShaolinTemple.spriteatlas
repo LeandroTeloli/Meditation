@@ -53,6 +53,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8db46750ef9ca234892a2400eb089715, type: 3}
   - {fileID: 21300000, guid: 9f0b3b53e4104504c972aa3772823366, type: 3}
   - {fileID: 21300000, guid: 628cf0b32e9739b42ae337714c092801, type: 3}
+  - {fileID: 21300000, guid: d6740267dd5025041ba0e4a49dc07306, type: 3}
   - {fileID: 21300000, guid: 74aed997c4677b3458f4ea338c4cbf56, type: 3}
   - {fileID: 21300000, guid: fd3d17d7d3cac074a8555d9af29bfb53, type: 3}
   - {fileID: 21300000, guid: 724d2288bfceb7c44b9ab86cfc238c8c, type: 3}
@@ -63,6 +64,7 @@ SpriteAtlas:
   - Flags
   - Master
   - Table
+  - MasterMat
   - Background
   - KaiMat
   - Windows

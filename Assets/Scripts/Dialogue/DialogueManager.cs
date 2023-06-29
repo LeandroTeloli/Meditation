@@ -5,8 +5,8 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public TextMeshProUGUI titleText;
-    // public TextMeshProUGUI dialogueText;
+    public TextMeshProUGUI dialogueText;
+    public bool isDialogueActive;
     public Animator animator;
     private Queue<string> sentences;
 
@@ -20,7 +20,7 @@ public class DialogueManager : MonoBehaviour
     {
         animator.SetBool("IsOpen",true);
 
-        titleText.text = dialogue.title;
+        isDialogueActive = true;
 
         sentences.Clear();
 
@@ -29,6 +29,12 @@ public class DialogueManager : MonoBehaviour
             sentences.Enqueue(sentence);
         }
 
+        StartCoroutine(WaitTextAppears());
+    }
+
+    IEnumerator WaitTextAppears()
+    {
+        yield return new WaitForSeconds(0.3f);
         DisplayNextSentence();
     }
 
@@ -36,16 +42,23 @@ public class DialogueManager : MonoBehaviour
     {
         if (sentences.Count == 0)
         {
-            EndDialogue();
+            isDialogueActive = false;
+            animator.SetBool("IsOpen",false);
             return;
         }
 
         string sentence = sentences.Dequeue();
-        // dialogueText.text = sentence;
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(sentence));
     }
 
-    void EndDialogue()
+    IEnumerator TypeSentence (string sentence)
     {
-        // animator.SetBool("IsOpen",false);
+        dialogueText.text = "";
+        foreach (char letter in sentence.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(0.06f);
+        }
     }
 }

@@ -36,10 +36,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -2193402036396158717}
-    m_Position: {x: -80, y: 290, z: 0}
+    m_Position: {x: 30, y: 290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8994207945265096207}
-    m_Position: {x: 210, y: 290, z: 0}
+    m_Position: {x: 30, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2149193057780380268}
     m_Position: {x: 30, y: 180, z: 0}
@@ -70,8 +70,8 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.10100229
-  m_TransitionOffset: 0.00088360364
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0.0008835959
   m_ExitTime: 0.19947122
   m_HasExitTime: 0
   m_HasFixedDuration: 1
@@ -110,7 +110,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DialogBoxOpen
+  m_Name: PaperBoxOpen
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -137,7 +137,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DialogBoxStart
+  m_Name: PaperBoxStart
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -163,7 +163,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DialogBox
+  m_Name: PaperBox
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: IsOpen
@@ -171,7 +171,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -192,7 +192,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DialogBoxClose
+  m_Name: PaperBoxClose
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

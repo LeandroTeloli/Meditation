@@ -23,7 +23,7 @@ public class PlayerMeditate : MonoBehaviour
     {
         if (isReadyToMeditate)
         {   
-            if (Input.GetButtonDown("Interact") && playerController.isOnFloor())
+            if (Input.GetButtonDown("Interact"))
             {
                 animator.SetBool("IsMeditating", !animator.GetBool("IsMeditating"));   
                 animator.SetBool("IsWalking", !animator.GetBool("IsMeditating"));   
@@ -32,18 +32,6 @@ public class PlayerMeditate : MonoBehaviour
             }
             
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-      isReadyToMeditate = true;
-      GetComponent<DialogueTrigger>().TriggerDialogue();
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-      isReadyToMeditate = false;
-      dialogBox.GetComponent<Animator>().SetBool("IsOpen", false);
     }
     
 }

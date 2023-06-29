@@ -2,73 +2,98 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private Rigidbody2D rb;
+    private Animator animator;
+    private DialogueManager dialogueManager;
+
     public float speed;
     public float jumpingPower;
     public float horizontal;
-    private bool isFacingRight = true;
-    private Transform floorCheck;
-    private LayerMask floorLayer;
-    public Rigidbody2D rb;
-    private Animator animator;
+    private Transform groundCheck;
+    private LayerMask groundLayer;
 
-    private void Start()
+    private bool isGrounded;
+    private bool isWalking;
+    private bool IsWalkingEnabled;
+    private bool IsMeditating;
+
+    private void Awake()
     {
-        floorCheck = transform.GetChild(0);
-        floorLayer = LayerMask.GetMask("Floor");
+        groundCheck = transform.GetChild(0);
+        groundLayer = LayerMask.GetMask("Floor");
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        animator.SetBool("IsWalking", false);
-
+        dialogueManager = FindObjectOfType<DialogueManager>();
     }
 
     private void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
+        HandleInput();
+        // HandleJump();
+        HandleDialogue();
 
-        // //Jump
+        animator.SetBool("IsWalking", isWalking);
 
-        // if (Input.GetButtonDown("Jump") && isOnFloor() && (!animator.GetBool("IsMeditating")))
-        // {
-        //     rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-        // }
+    }
 
-        // if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
-        // {
-        //     rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-        // }
-
+    private void HandleInput()
+    {
+        horizontal = Input.GetAxisRaw("Walk");
 
         //Walk
-        if (horizontal != 0f && (!animator.GetBool("IsMeditating")))
+        if (horizontal != 0f && IsWalkingEnabled)
         {
             // Player is walking
-            animator.SetBool("IsWalking", !animator.GetBool("IsMeditating"));  
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+            isWalking = true;
         }
         else
         {
             // Player is idle
-            animator.SetBool("IsWalking", false);
-            rb.velocity = new (0f, rb.velocity.y);        
-        }
+            rb.velocity = new (0f, rb.velocity.y);   
+            isWalking = false;
 
-        if ((isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f) && (!animator.GetBool("IsMeditating")))
+        }
+        
+        //Flip
+        if (isWalking)
         {
-            Flip();
+            if (horizontal > 0f)
+            {
+                transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+            else if (horizontal < 0f)
+            {
+                transform.localScale = new Vector3(-1f, 1f, 1f);
+            }
         }
 
     }
 
-    public bool isOnFloor()
+    private void HandleJump () 
     {
-        return Physics2D.OverlapCircle(floorCheck.position, 0.2f, floorLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+
+        if (isGrounded && Input.GetButtonDown("Jump"))
+        {
+            rb.AddForce(new Vector2(0f, jumpingPower), ForceMode2D.Impulse);
+        }
     }
 
-    private void Flip()
+    private void HandleDialogue () 
     {
-        isFacingRight = !isFacingRight;
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1f;
-        transform.localScale = localScale;
+        if (dialogueManager.isDialogueActive)
+        {
+            IsWalkingEnabled = false;
+            if (Input.GetButtonDown("Interact"))
+            {
+                dialogueManager.DisplayNextSentence();
+            }    
+        } 
+        else
+        {
+            IsWalkingEnabled = true;
+        }
     }
 }
