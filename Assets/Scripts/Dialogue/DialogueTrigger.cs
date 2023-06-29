@@ -1,15 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public Dialogue dialogue;
+    [System.Serializable]
+    public struct DialogueLine
+    {
+        public string characterName;
+        public string sentence;
+    }
+
+    public DialogueLine[] dialogueLines;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-      FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
-      Destroy(gameObject);
+        DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
+        dialogueManager.StartDialogue(dialogueLines);
+        Destroy(gameObject);
     }
 }
-

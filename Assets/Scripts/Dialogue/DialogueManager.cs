@@ -5,28 +5,28 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public TextMeshProUGUI dialogueText;
+    public GameObject dialogueBox;
     public bool isDialogueActive;
     public Animator animator;
-    private Queue<string> sentences;
+    private Queue<string> listOfSentences;
 
     // Start is called before the first frame update
     void Start()
     {
-        sentences = new Queue<string>();
+        listOfSentences = new Queue<string>();
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(DialogueTrigger.DialogueLine []DialogueLine)
     {
         animator.SetBool("IsOpen",true);
 
         isDialogueActive = true;
 
-        sentences.Clear();
+        listOfSentences.Clear();
 
-        foreach (string sentence in dialogue.sentences)
+        foreach (DialogueTrigger.DialogueLine dialogueLine in DialogueLine)
         {
-            sentences.Enqueue(sentence);
+            listOfSentences.Enqueue(dialogueLine.sentence);
         }
 
         StartCoroutine(WaitTextAppears());
@@ -34,30 +34,30 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator WaitTextAppears()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         DisplayNextSentence();
     }
 
     public void DisplayNextSentence() 
     {
-        if (sentences.Count == 0)
+        if (listOfSentences.Count == 0)
         {
             isDialogueActive = false;
             animator.SetBool("IsOpen",false);
             return;
         }
 
-        string sentence = sentences.Dequeue();
+        string sentence = listOfSentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }
 
     IEnumerator TypeSentence (string sentence)
     {
-        dialogueText.text = "";
+        TextMeshProUGUI Dialogue = dialogueBox.GetComponentInChildren<TextMeshProUGUI>();
         foreach (char letter in sentence.ToCharArray())
         {
-            dialogueText.text += letter;
+            Dialogue.text += letter;
             yield return new WaitForSeconds(0.04f);
         }
     }

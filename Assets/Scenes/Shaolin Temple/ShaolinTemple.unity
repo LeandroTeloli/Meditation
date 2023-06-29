@@ -1816,7 +1816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2436da34e6b813f47b8e7a167d93023f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: {fileID: 1015271503}
+  dialogueBox: {fileID: 1448233572}
   isDialogueActive: 0
   animator: {fileID: 298761627}
 --- !u!4 &1418667017
@@ -2324,12 +2324,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53219e44c079e1448a2a74b373d3172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-    sentences:
-    - Is this the Zhao Shaolin Temple?
-    - My friend told me I should try some shaolin techniques
-    - So I've been searching for it, and found you guys
-    - How do I start? Is there any paper I need to sign?
+  dialogueLines:
+  - characterName: Kai
+    sentence: Afonso
+  - characterName: Master
+    sentence: BLABLA
 --- !u!61 &1573548401
 BoxCollider2D:
   m_ObjectHideFlags: 0
