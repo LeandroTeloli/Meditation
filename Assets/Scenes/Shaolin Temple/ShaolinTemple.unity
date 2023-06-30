@@ -405,9 +405,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0}
+  m_AnchoredPosition: {x: 0, y: -9.6900015}
   m_SizeDelta: {x: 80, y: 0}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &298761625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,7 +646,7 @@ RectTransform:
   m_Children:
   - {fileID: 1448233573}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1221,8 +1221,9 @@ GameObject:
   - component: {fileID: 733234607}
   - component: {fileID: 733234606}
   - component: {fileID: 733234605}
+  - component: {fileID: 733234608}
   m_Layer: 0
-  m_Name: KaiMat
+  m_Name: MeditateMat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1252,7 +1253,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.04, y: 0.04}
+  m_Size: {x: 0.08, y: 0.04}
   m_EdgeRadius: 0
 --- !u!212 &733234606
 SpriteRenderer:
@@ -1313,14 +1314,31 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733234604}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.75, y: -0.78, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.88, y: -0.00999999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_Father: {fileID: 1527467288}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &733234608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733234604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f53219e44c079e1448a2a74b373d3172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Character: {fileID: 1518304577}
+    sentence: Meditate
+    letterWaitingTime: 0
+    IsInteraction: 1
 --- !u!1 &814606411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,7 +1835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDialogueActive: 0
-  animator: {fileID: 298761627}
+  IsInteraction: 0
   canvas: {fileID: 379625342}
   dialogueBox: {fileID: 1448233572}
 --- !u!4 &1418667017
@@ -1847,8 +1865,9 @@ GameObject:
   - component: {fileID: 1434380997}
   - component: {fileID: 1434380996}
   - component: {fileID: 1434380995}
+  - component: {fileID: 1434380998}
   m_Layer: 5
-  m_Name: Button
+  m_Name: InteractionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1871,7 +1890,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 38, y: -6.26}
+  m_AnchoredPosition: {x: 40, y: -8.62}
   m_SizeDelta: {x: 9, y: 9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1434380995
@@ -1956,6 +1975,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434380993}
   m_CullTransparentMesh: 1
+--- !u!95 &1434380998
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434380993}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f42cc89d4f1f00549a1c568553a717bb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1448233572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2292,8 +2331,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1573548402}
+  - {fileID: 733234607}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1573548399
 GameObject:
@@ -2307,7 +2347,7 @@ GameObject:
   - component: {fileID: 1573548401}
   - component: {fileID: 1573548400}
   m_Layer: 0
-  m_Name: OnArrive
+  m_Name: Introduction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2327,26 +2367,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueLines:
   - Character: {fileID: 1518304577}
-    sentence: Hey guys, I'm Kai. Nice to meet you
+    sentence: Um... Excuse me, everyone. Hi! I'm Kai. Nice to meet you all!
     letterWaitingTime: 0.05
+    IsInteraction: 0
   - Character: {fileID: 1518304577}
-    sentence: My friend told me about this shaolin temple...
+    sentence: So, my friend mentioned this incredible Shaolin temple to me...
     letterWaitingTime: 0.06
+    IsInteraction: 0
   - Character: {fileID: 1518304577}
-    sentence: And I thought it would be nice to come!
+    sentence: And I couldn't resist the urge to come and see it for myself!
     letterWaitingTime: 0.03
+    IsInteraction: 0
   - Character: {fileID: 1518304577}
-    sentence: I even bought these clothes... and shaved my hair
-    letterWaitingTime: 0.06
+    sentence: Look at me, I even dressed up and shaved my head to immerse myself
+      in the experience!
+    letterWaitingTime: 0.035
+    IsInteraction: 0
   - Character: {fileID: 1518304577}
-    sentence: How... can I start?
+    sentence: Is there some kind of registration or paperwork I need to do?
     letterWaitingTime: 0.05
-  - Character: {fileID: 1518304577}
-    sentence: Is there any paper I need to sign?
-    letterWaitingTime: 0.03
+    IsInteraction: 0
   - Character: {fileID: 1111690669}
-    sentence: Join us... Kai
-    letterWaitingTime: 0.2
+    sentence: Welcome, young one... Please, join us in our practice
+    letterWaitingTime: 0.1
+    IsInteraction: 0
 --- !u!61 &1573548401
 BoxCollider2D:
   m_ObjectHideFlags: 0

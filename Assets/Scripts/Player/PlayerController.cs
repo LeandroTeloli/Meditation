@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
     {
         if (dialogueManager.isDialogueActive)
         {
-            IsWalkingEnabled = false;
+            IsWalkingEnabled = dialogueManager.IsInteraction;
             if (Input.GetButtonDown("Interact"))
             {
                 dialogueManager.DisplayNextSentence();

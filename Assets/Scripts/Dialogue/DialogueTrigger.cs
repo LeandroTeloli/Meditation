@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
@@ -8,14 +9,29 @@ public class DialogueTrigger : MonoBehaviour
         public GameObject Character;
         public string sentence;
         public float letterWaitingTime;
+        public bool IsInteraction;
     }
 
     public DialogueLine[] dialogueLines;
 
+    private DialogueManager dialogueManager;
+
+    private void Start()
+    {
+        dialogueManager = FindObjectOfType<DialogueManager>();
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
         dialogueManager.StartDialogue(dialogueLines);
-        // Destroy(gameObject);
+        if (!dialogueLines[0].IsInteraction)
+        {        
+            Destroy(gameObject);
+        }
     }
+
+    private void OnTriggerExit2D(Collider2D other) 
+    {
+        dialogueManager.DisplayNextSentence();
+    }
+    
 }
