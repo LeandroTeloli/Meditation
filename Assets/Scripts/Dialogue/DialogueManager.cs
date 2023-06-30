@@ -9,20 +9,25 @@ public class DialogueManager : MonoBehaviour
     public Animator animator;
     private Queue<string> listOfSentences;
     private Queue<GameObject> listOfSentenceCharacters;
+    private Queue<float> listOfLetterWaitingTimes;
 
     public Canvas canvas;
     public GameObject dialogueBox;
     private GameObject currentCharacter;
+    private TextMeshProUGUI DialogueText;
     
     void Start()
     {
         listOfSentences = new Queue<string>();
         listOfSentenceCharacters = new Queue<GameObject>();
+        listOfLetterWaitingTimes = new Queue<float>();
+        DialogueText = dialogueBox.GetComponentInChildren<TextMeshProUGUI>();
     }
 
 
     public void StartDialogue(DialogueTrigger.DialogueLine []DialogueLine)
     {
+        Debug.Log(DialogueText.text);
         isDialogueActive = true;
         listOfSentences.Clear();
         listOfSentenceCharacters.Clear();
@@ -31,25 +36,20 @@ public class DialogueManager : MonoBehaviour
         {
             listOfSentences.Enqueue(dialogueLine.sentence);
             listOfSentenceCharacters.Enqueue(dialogueLine.Character);
+            listOfLetterWaitingTimes.Enqueue(dialogueLine.letterWaitingTime);
         }
 
-        StartCoroutine(WaitTextAppears());
-        DisplayNextSentence();
-
-    }
-
-    IEnumerator WaitTextAppears()
-    {
-        yield return new WaitForSeconds(0.5f);
         DisplayNextSentence();
     }
     public void DisplayNextSentence() 
     {
         if (listOfSentences.Count == 0)
         {
-            Debug.Log("fechou");
             isDialogueActive = false;
             animator.SetBool("IsOpen",false);
+            Debug.Log(DialogueText.text);
+            StopAllCoroutines();
+            DialogueText.text = " ";
             return;
         }
         
@@ -57,7 +57,7 @@ public class DialogueManager : MonoBehaviour
 
         string sentence = listOfSentences.Dequeue();
         StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
+        StartCoroutine(TypeSentence(sentence, listOfLetterWaitingTimes.Dequeue()));
     }
 
     public void OpenDialogue (GameObject character) 
@@ -71,16 +71,31 @@ public class DialogueManager : MonoBehaviour
         currentCharacter = character;
     }
 
-    IEnumerator TypeSentence (string sentence)
+    IEnumerator TypeSentence (string sentence, float letterWaitingTime)
     {
-        TextMeshProUGUI Dialogue = dialogueBox.GetComponentInChildren<TextMeshProUGUI>();
-        Dialogue.text = "";
+        //Verifica se é a primeira frase do diálogo
+        if (DialogueText.text == " ")
+        {            
+            //Adiciona um tempo até a abertura do dialogbox para mostrar o texto
+            yield return new WaitForSeconds(0.8f);
+        }
+
+        DialogueText.text = "";
 
         foreach (char letter in sentence.ToCharArray())
         {
-            Dialogue.text += letter;
-            yield return new WaitForSeconds(0.05f);
+            if (letter == '.')
+            {
+                DialogueText.text += letter;
+                yield return new WaitForSeconds(letterWaitingTime + 0.3f);
+            } 
+            else
+            {
+                DialogueText.text += letter;
+                yield return new WaitForSeconds(letterWaitingTime);
+            }
         }
+
     }
 
     private void CalculateDialogueBoxPosition (GameObject character) 

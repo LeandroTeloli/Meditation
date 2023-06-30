@@ -2328,15 +2328,25 @@ MonoBehaviour:
   dialogueLines:
   - Character: {fileID: 1518304577}
     sentence: Hey guys, I'm Kai. Nice to meet you
+    letterWaitingTime: 0.05
   - Character: {fileID: 1518304577}
-    sentence: My friend told me about this shaolin temple, I thought it would be
-      nice to come
+    sentence: My friend told me about this shaolin temple...
+    letterWaitingTime: 0.06
   - Character: {fileID: 1518304577}
-    sentence: I even bought these clothes and shaved my hair
+    sentence: And I thought it would be nice to come!
+    letterWaitingTime: 0.03
   - Character: {fileID: 1518304577}
-    sentence: How can I start? Is there any paper I need to sign?
+    sentence: I even bought these clothes... and shaved my hair
+    letterWaitingTime: 0.06
+  - Character: {fileID: 1518304577}
+    sentence: How... can I start?
+    letterWaitingTime: 0.05
+  - Character: {fileID: 1518304577}
+    sentence: Is there any paper I need to sign?
+    letterWaitingTime: 0.03
   - Character: {fileID: 1111690669}
-    sentence: Join us in this meditation Kai
+    sentence: Join us... Kai
+    letterWaitingTime: 0.2
 --- !u!61 &1573548401
 BoxCollider2D:
   m_ObjectHideFlags: 0

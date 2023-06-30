@@ -7,6 +7,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         public GameObject Character;
         public string sentence;
+        public float letterWaitingTime;
     }
 
     public DialogueLine[] dialogueLines;
