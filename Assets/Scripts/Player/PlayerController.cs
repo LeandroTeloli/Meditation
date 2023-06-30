@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         HandleInput();
         // HandleJump();
-        HandleDialogue();
+        HandleDialogueInteraction();
 
         animator.SetBool("IsWalking", isWalking);
 
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HandleDialogue () 
+    private void HandleDialogueInteraction () 
     {
         if (dialogueManager.isDialogueActive)
         {

@@ -5,7 +5,7 @@ public class DialogueTrigger : MonoBehaviour
     [System.Serializable]
     public struct DialogueLine
     {
-        public string characterName;
+        public GameObject Character;
         public string sentence;
     }
 
@@ -15,6 +15,6 @@ public class DialogueTrigger : MonoBehaviour
     {
         DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
         dialogueManager.StartDialogue(dialogueLines);
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 }
