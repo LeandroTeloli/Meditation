@@ -205,7 +205,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &152083411
 GameObject:
@@ -550,7 +550,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &379625339
 GameObject:
@@ -766,7 +766,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -955,7 +955,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &637882079
 GameObject:
@@ -1039,7 +1039,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &651126399
 GameObject:
@@ -1221,7 +1221,6 @@ GameObject:
   - component: {fileID: 733234607}
   - component: {fileID: 733234606}
   - component: {fileID: 733234605}
-  - component: {fileID: 733234608}
   m_Layer: 0
   m_Name: MeditateMat
   m_TagString: Untagged
@@ -1322,23 +1321,6 @@ Transform:
   m_Father: {fileID: 1527467288}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &733234608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 733234604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f53219e44c079e1448a2a74b373d3172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueLines:
-  - Character: {fileID: 1518304577}
-    sentence: Meditate
-    letterWaitingTime: 0
-    IsInteraction: 1
 --- !u!1 &814606411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1767,12 +1749,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111690669}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.124699995, y: -0.51019996, z: 0}
+  m_LocalPosition: {x: -0.1251, y: -0.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1346592043
 GameObject:
@@ -1835,7 +1817,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDialogueActive: 0
-  IsInteraction: 0
   canvas: {fileID: 379625342}
   dialogueBox: {fileID: 1448233572}
 --- !u!4 &1418667017
@@ -2114,7 +2095,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1518304577
 GameObject:
@@ -2245,7 +2226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518304577}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4900001, y: -0.6603, z: 0}
+  m_LocalPosition: {x: -1.52, y: -0.6603, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2301,6 +2282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogBox: {fileID: 0}
+  animator: {fileID: 0}
+  isReadyToMeditate: 0
   playerController: {fileID: 1518304583}
 --- !u!1 &1527467287
 GameObject:
@@ -2369,28 +2352,22 @@ MonoBehaviour:
   - Character: {fileID: 1518304577}
     sentence: Um... Excuse me, everyone. Hi! I'm Kai. Nice to meet you all!
     letterWaitingTime: 0.05
-    IsInteraction: 0
   - Character: {fileID: 1518304577}
     sentence: So, my friend mentioned this incredible Shaolin temple to me...
     letterWaitingTime: 0.06
-    IsInteraction: 0
   - Character: {fileID: 1518304577}
     sentence: And I couldn't resist the urge to come and see it for myself!
     letterWaitingTime: 0.03
-    IsInteraction: 0
   - Character: {fileID: 1518304577}
     sentence: Look at me, I even dressed up and shaved my head to immerse myself
       in the experience!
     letterWaitingTime: 0.035
-    IsInteraction: 0
   - Character: {fileID: 1518304577}
     sentence: Is there some kind of registration or paperwork I need to do?
     letterWaitingTime: 0.05
-    IsInteraction: 0
   - Character: {fileID: 1111690669}
     sentence: Welcome, young one... Please, join us in our practice
     letterWaitingTime: 0.1
-    IsInteraction: 0
 --- !u!61 &1573548401
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2514,7 +2491,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1863465428
 GameObject:

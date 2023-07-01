@@ -6,9 +6,8 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     public bool isDialogueActive;
-    public bool IsInteraction;
     private Animator dialogueAnimator;
-    private Animator interactioNButtonAnimator;
+    private Animator interactionButtonAnimator;
     private Queue<string> listOfSentences;
     private Queue<GameObject> listOfSentenceCharacters;
     private Queue<float> listOfLetterWaitingTimes;
@@ -29,14 +28,13 @@ public class DialogueManager : MonoBehaviour
         dialogueAnimator =  paperBox.GetComponent<Animator>();
 
         GameObject interactionButton = GameObject.Find("InteractionButton");
-        interactioNButtonAnimator = interactionButton.GetComponent<Animator>();
+        interactionButtonAnimator = interactionButton.GetComponent<Animator>();
     }
 
 
     public void StartDialogue(DialogueTrigger.DialogueLine []DialogueLine)
     {        
         isDialogueActive = true;
-        IsInteraction = DialogueLine[0].IsInteraction;
         DialogueText.alignment = TextAlignmentOptions.Left;
         listOfSentences.Clear();
         listOfSentenceCharacters.Clear();
@@ -55,36 +53,30 @@ public class DialogueManager : MonoBehaviour
         if (listOfSentences.Count == 0)
         {
             isDialogueActive = false;
-            interactioNButtonAnimator.SetBool("IsEnabled",false);            
+            interactionButtonAnimator.SetBool("IsEnabled",false);            
             dialogueAnimator.SetBool("IsOpen",false);
             StopAllCoroutines();
-
-            if (!IsInteraction) {
-                DialogueText.text = " ";
-            }
-
+            DialogueText.text = " ";
             return;
         }
         
-        OpenDialogue(listOfSentenceCharacters.Dequeue());
+        GameObject character = listOfSentenceCharacters.Dequeue();
+
+        OpenDialogue(character);
 
         string sentence = listOfSentences.Dequeue();
-        
-        if (IsInteraction) {
-            DialogueText.alignment = TextAlignmentOptions.Center;
-            DialogueText.text = sentence;
-            interactioNButtonAnimator.SetBool("IsEnabled",true);           
-            return;
-        }
+        Debug.Log(sentence);
+
         
         StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence, listOfLetterWaitingTimes.Dequeue()));
+        StartCoroutine(TypeSentence(sentence, listOfLetterWaitingTimes.Dequeue(), character));
     }
 
     public void OpenDialogue (GameObject character) 
     {   
+
         if (currentCharacter != character)
-        {            
+        {
             CalculateDialogueBoxPosition(character);
         }
 
@@ -92,13 +84,14 @@ public class DialogueManager : MonoBehaviour
         currentCharacter = character;
     }
 
-    IEnumerator TypeSentence (string sentence, float letterWaitingTime)
+    IEnumerator TypeSentence (string sentence, float letterWaitingTime, GameObject character)
     {
-        interactioNButtonAnimator.SetBool("IsEnabled",false);           
+        interactionButtonAnimator.SetBool("IsEnabled",false);           
         
         //Verifica se é a primeira frase do diálogo
-        if (DialogueText.text == " " && !IsInteraction)
+        if (DialogueText.text == " ")
         {            
+            Debug.Log("Primeira frase");
             //Adiciona um tempo até a abertura do dialogbox para mostrar o texto
             yield return new WaitForSeconds(0.8f);
         }
@@ -124,7 +117,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        interactioNButtonAnimator.SetBool("IsEnabled",true);           
+        interactionButtonAnimator.SetBool("IsEnabled",true);           
 
     }
 

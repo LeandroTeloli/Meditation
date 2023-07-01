@@ -9,7 +9,6 @@ public class DialogueTrigger : MonoBehaviour
         public GameObject Character;
         public string sentence;
         public float letterWaitingTime;
-        public bool IsInteraction;
     }
 
     public DialogueLine[] dialogueLines;
@@ -23,15 +22,6 @@ public class DialogueTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         dialogueManager.StartDialogue(dialogueLines);
-        if (!dialogueLines[0].IsInteraction)
-        {        
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
-
-    private void OnTriggerExit2D(Collider2D other) 
-    {
-        dialogueManager.DisplayNextSentence();
-    }
-    
 }

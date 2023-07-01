@@ -31,10 +31,9 @@ public class PlayerController : MonoBehaviour
     {
         HandleInput();
         // HandleJump();
-        HandleDialogueInteraction();
+        HandleDialogue();
 
         animator.SetBool("IsWalking", isWalking);
-
     }
 
     private void HandleInput()
@@ -81,15 +80,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HandleDialogueInteraction () 
+    private void HandleDialogue () 
     {
+        // Dialogue estará ativo quando o usuário entrar em algum ponto demarcado com script "DialogueTrigger"
         if (dialogueManager.isDialogueActive)
         {
-            IsWalkingEnabled = dialogueManager.IsInteraction;
+            IsWalkingEnabled = false;
+
             if (Input.GetButtonDown("Interact"))
             {
                 dialogueManager.DisplayNextSentence();
-            }    
+            }  
         } 
         else
         {
