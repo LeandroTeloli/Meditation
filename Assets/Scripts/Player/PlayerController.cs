@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private DialogueManager dialogueManager;
+    private InteractionManager interactionManager;
 
     public float speed;
     public float jumpingPower;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         dialogueManager = FindObjectOfType<DialogueManager>();
+        interactionManager = FindObjectOfType<InteractionManager>();
     }
 
     private void Update()
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
         HandleInput();
         // HandleJump();
         HandleDialogue();
+        HandleInteraction();
 
         animator.SetBool("IsWalking", isWalking);
     }
@@ -87,14 +90,35 @@ public class PlayerController : MonoBehaviour
         {
             IsWalkingEnabled = false;
 
-            if (Input.GetButtonDown("Interact"))
-            {
+            if (Input.GetButtonDown("Interact") && dialogueManager.canInteract)
+            {                
                 dialogueManager.DisplayNextSentence();
             }  
         } 
-        else
+        else if (!IsMeditating)
         {
             IsWalkingEnabled = true;
         }
+    }
+
+    private void HandleInteraction ()
+    {
+        if (Input.GetButtonDown("Interact") && (interactionManager.isInteractionActive || IsMeditating))
+        {      
+            IsMeditating = !IsMeditating;         
+
+            if (IsMeditating) 
+            {
+                IsWalkingEnabled = false;
+                animator.SetBool("IsMeditating", true);
+                interactionManager.HideInteractionBox();           
+            }
+            else
+            {
+                IsWalkingEnabled = true;
+                animator.SetBool("IsMeditating", false);  
+                interactionManager.ShowInteractionBox("Meditate", interactionManager.interactionReferenceObject);           
+            }
+        }  
     }
 }
