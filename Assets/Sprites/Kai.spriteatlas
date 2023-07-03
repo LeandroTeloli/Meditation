@@ -50,7 +50,10 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 6e3713a1e90aeac438e481642c88f56b, type: 3}
+  - {fileID: 326007116, guid: dd3bd2951a8150e44b890b1ec584bddd, type: 3}
+  - {fileID: -1298088782, guid: dd3bd2951a8150e44b890b1ec584bddd, type: 3}
+  - {fileID: -1840585249, guid: dd3bd2951a8150e44b890b1ec584bddd, type: 3}
+  - {fileID: 1580911892, guid: dd3bd2951a8150e44b890b1ec584bddd, type: 3}
   - {fileID: 1379736533, guid: 725520367f536bd4f8f98107df8fabf5, type: 3}
   - {fileID: 965333185, guid: 725520367f536bd4f8f98107df8fabf5, type: 3}
   - {fileID: 21300000, guid: fd525dbcb30ed894c9f92839d76db26d, type: 3}
@@ -64,10 +67,13 @@ SpriteAtlas:
   - {fileID: 1629224895, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
   - {fileID: -941792261, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Meditating
+  - MeditatingLooking_1
+  - MeditatingLooking_0
+  - MeditatingLooking_3
+  - MeditatingLooking_2
   - Idle_0
   - Idle_1
-  - Meditating 1
+  - Meditating
   - Kai
   - Walk_5
   - Walk_4

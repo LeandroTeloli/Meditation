@@ -19,6 +19,7 @@ public class InteractionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        interactionBox.SetActive(true);
         InteractionText = interactionBox.GetComponentInChildren<TextMeshProUGUI>();
 
         GameObject paperBox = interactionBox.transform.Find("PaperBox")?.gameObject;

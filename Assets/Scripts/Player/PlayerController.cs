@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class PlayerController : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private DialogueManager dialogueManager;
     private InteractionManager interactionManager;
+    private PlayableDirector meditationTimeline;
 
     public float speed;
     public float jumpingPower;
@@ -17,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool isWalking;
     private bool IsWalkingEnabled;
     private bool IsMeditating;
+    private bool CantToggleMeditation;
 
     private void Awake()
     {
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         dialogueManager = FindObjectOfType<DialogueManager>();
         interactionManager = FindObjectOfType<InteractionManager>();
+        meditationTimeline = FindObjectOfType<PlayableDirector>();
     }
 
     private void Update()
@@ -111,14 +115,24 @@ public class PlayerController : MonoBehaviour
             {
                 IsWalkingEnabled = false;
                 animator.SetBool("IsMeditating", true);
-                interactionManager.HideInteractionBox();           
+                interactionManager.HideInteractionBox(); 
+                transform.localScale = new Vector3(1f, 1f, 1f);
+
+                meditationTimeline.time = 0f;
+                meditationTimeline.Play();          
             }
-            else
+            else if (!CantToggleMeditation)
             {
                 IsWalkingEnabled = true;
                 animator.SetBool("IsMeditating", false);  
-                interactionManager.ShowInteractionBox("Meditate", interactionManager.interactionReferenceObject);           
+                interactionManager.ShowInteractionBox("Meditate", interactionManager.interactionReferenceObject);    
+                meditationTimeline.Pause();        
             }
         }  
+    }
+
+    public void DisableStopMeditating ()
+    {
+        CantToggleMeditation = true;
     }
 }

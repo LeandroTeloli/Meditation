@@ -18,6 +18,7 @@ public class DialogueManager : MonoBehaviour
     private GameObject currentCharacter;
     private TextMeshProUGUI DialogueText;
     
+    
     void Start()
     {
         listOfSentences = new Queue<string>();
@@ -86,8 +87,8 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeSentence (string sentence, float letterWaitingTime, GameObject character)
     {
-        interactionButtonAnimator.SetBool("IsEnabled",false);     
-        canInteract = true;      
+        interactionButtonAnimator.SetBool("IsEnabled",false);    
+        canInteract = false;      
         
         //Verifica se é a primeira frase do diálogo
         if (DialogueText.text == " ")
