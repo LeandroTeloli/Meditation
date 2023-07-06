@@ -58,14 +58,14 @@ SpriteAtlas:
   - {fileID: 965333185, guid: 725520367f536bd4f8f98107df8fabf5, type: 3}
   - {fileID: 21300000, guid: fd525dbcb30ed894c9f92839d76db26d, type: 3}
   - {fileID: 21300000, guid: 060efd5d32660e645845a40dabb6960d, type: 3}
-  - {fileID: -1825103692, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
-  - {fileID: -1610462921, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
-  - {fileID: -560799396, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
-  - {fileID: 1638620816, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
-  - {fileID: -1277809873, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
-  - {fileID: 264445392, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
-  - {fileID: 1629224895, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
-  - {fileID: -941792261, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
+  - {fileID: 1307582495, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
+  - {fileID: 2111551780, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
+  - {fileID: -150540590, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
+  - {fileID: -1692868139, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
+  - {fileID: -1298279757, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
+  - {fileID: 947587429, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
+  - {fileID: -1303022892, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
+  - {fileID: 449153152, guid: 578b791e2f317324e92e22eb69a3ff8c, type: 3}
   m_PackedSpriteNamesToIndex:
   - MeditatingLooking_1
   - MeditatingLooking_0

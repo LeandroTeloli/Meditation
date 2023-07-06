@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool isWalking;
     private bool IsWalkingEnabled;
     private bool IsMeditating;
-    private bool CantToggleMeditation;
+    private bool PreventToggleMeditation;
 
     private void Awake()
     {
@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
         dialogueManager = FindObjectOfType<DialogueManager>();
         interactionManager = FindObjectOfType<InteractionManager>();
         meditationTimeline = FindObjectOfType<PlayableDirector>();
+
+        PreventToggleMeditation = false;
     }
 
     private void Update()
@@ -107,7 +109,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInteraction ()
     {
-        if (Input.GetButtonDown("Interact") && (interactionManager.isInteractionActive || IsMeditating))
+        if (Input.GetButtonDown("Interact") && (interactionManager.isInteractionActive || IsMeditating) && !PreventToggleMeditation)
         {      
             IsMeditating = !IsMeditating;         
 
@@ -121,7 +123,7 @@ public class PlayerController : MonoBehaviour
                 meditationTimeline.time = 0f;
                 meditationTimeline.Play();          
             }
-            else if (!CantToggleMeditation)
+            else if (!PreventToggleMeditation)
             {
                 IsWalkingEnabled = true;
                 animator.SetBool("IsMeditating", false);  
@@ -133,6 +135,6 @@ public class PlayerController : MonoBehaviour
 
     public void DisableStopMeditating ()
     {
-        CantToggleMeditation = true;
+        PreventToggleMeditation = true;
     }
 }
